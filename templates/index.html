@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>soils client</title>
+</head>
+<body>
+<div id="rez">
+
+</div>
+<script>
+    console.log('started');
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'http://127.0.0.1:5000/soils', false);
+    xhr.send();
+
+    // 4. Если код ответа сервера не 200, то это ошибка
+    if (xhr.status != 200) {
+        alert(xhr.status + ': ' + xhr.statusText); // пример вывода: 404: Not Found
+    } else {
+        //alert( xhr.responseText ); // responseText -- текст ответа.
+        obj = JSON.parse(xhr.responseText);
+        console.log(obj.soils.length);
+        for (i = 0; i < obj.soils.length; i++) {
+            console.log(obj.soils[i].title+"-"+obj.soils[i].description);
+        }
+    }
+</script>
+
+</body>
+</html>
